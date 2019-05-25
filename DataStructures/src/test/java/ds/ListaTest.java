@@ -57,6 +57,35 @@ public class ListaTest {
         assertNull(list.buscar("chucky"));
     }
     
+    @Test
+    public void eliminarVacia() {
+        assertFalse(list.eliminar("non-existent"));
+    }
     
+    @Test
+    public void eliminarPrimero() {
+        insert("node1");
+        assertEquals(1, list.cantElementos());
+        assertTrue(list.eliminar("node1"));
+        assertEquals(0, list.cantElementos());
+    }
+    
+    @Test
+    public void eliminarVarios() {
+        insert("foo");
+        insert("bar");
+        insert("uruguay");
+        insert("test");
+        
+        assertTrue(list.eliminar("foo"));
+        assertEquals("bar", list.getPrimero().getEtiqueta());
+        assertEquals(3, list.cantElementos());
+        
+        assertTrue(list.eliminar("uruguay"));
+        assertEquals(2, list.cantElementos());
+        
+        assertTrue(list.eliminar("test"));
+        assertEquals(1, list.cantElementos());
+    }
     
 }

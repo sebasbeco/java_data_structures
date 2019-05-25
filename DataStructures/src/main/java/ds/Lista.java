@@ -12,6 +12,10 @@ public class Lista<T> implements ILista<T> {
     
     private Nodo<T> primero;
     private int largo;
+    
+    public Nodo<T> getPrimero() {
+        return primero;
+    }
 
     @Override
     public void insertar(Nodo<T> nodo) {
@@ -39,8 +43,28 @@ public class Lista<T> implements ILista<T> {
 
     @Override
     public boolean eliminar(Comparable clave) {
-        largo -= 1;
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (esVacia())
+            return false;
+        
+        if (primero.compareTo(clave) == 0) {
+            primero = primero.getSiguiente();
+            largo -= 1;
+            return true;
+        }
+        
+        Nodo<T> current = primero;
+        while (
+                current.getSiguiente() != null && 
+                current.getSiguiente().compareTo(clave) != 0)
+            current = current.getSiguiente();
+        
+        if (current.getSiguiente() == null) 
+            return false;
+        else {
+            current.setSiguiente(current.getSiguiente().getSiguiente());
+            largo -= 1;
+            return true;
+        }
     }
 
     @Override

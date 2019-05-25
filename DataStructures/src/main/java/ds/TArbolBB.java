@@ -10,50 +10,81 @@ import ds.TElementoAB;
 
 
 public class TArbolBB<T> implements IArbolBB<T> {
+    
+    private TElementoAB<T> root;
+    
+    public TElementoAB<T> getRoot() {
+        return root;
+    }
 
     @Override
     public boolean insertar(TElementoAB<T> unElemento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (root != null) 
+            return root.insertar(unElemento);
+        root = unElemento;
+        return true;
     }
 
     @Override
     public TElementoAB<T> buscar(Comparable unaEtiqueta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (root != null)
+            return root.buscar(unaEtiqueta);
+        return null;
     }
 
     @Override
     public String inOrden() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (root != null)
+            return root.inOrden();
+        return "";
     }
-
+    
     @Override
-    public Lista<T> inorden() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Lista<T> inorden() { // buen nombre?
+        Lista<T> list = new Lista<>();
+        if (root != null)
+            root.inOrden(list);
+        return list;
     }
 
     @Override
     public int obtenerAltura() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (root != null)
+            return root.obtenerAltura();
+        return -1;
     }
 
     @Override
     public int obtenerTamanio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (root != null)
+            return root.obtenerTamanio();
+        return 0;
     }
 
     @Override
     public int obtenerNivel(Comparable unaEtiqueta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (root == null)
+            return -1;
+        return root.obtenerNivel(unaEtiqueta);
     }
 
     @Override
     public int obtenerCantidadHojas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (root == null)
+            return 0;
+        return root.obtenerCantidadHojas();
     }
 
     @Override
     public void eliminar(Comparable unaEtiqueta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (root != null)
+            root = root.eliminar(unaEtiqueta);
+    }
+    
+    public String postOrden() {
+        if (root != null)
+            return root.postOrden();
+        return "";
     }
     
 }

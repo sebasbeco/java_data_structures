@@ -1,6 +1,7 @@
 package ds.interfaces;
 
 
+import ds.Lista;
 import ds.TElementoAB;
 import java.util.LinkedList;
 
@@ -70,34 +71,32 @@ public interface IElementoAB<T> {
      */
     public T getDatos();
 	
-/**
-	 * Retorna la altura del arbol cuya raiz es la del nodo actual.
-	 * @return Altura del subarbol.
-	 */
-	public int obtenerAltura();
-	
-	/**
-	 * Retorna el tamaño del arbol cuya raiz es la del nodo actual.
-	 * @return tamaño del subarbol.
-	 */
-	public int obtenerTamanio();
-	
-	/**
-	 * Retorna el nivel del elemento cuya etiqueta es la pasada por par�metro.
-	 * @param unaEtiqueta
-	 * @return Nivel
-	 */
-	public int obtenerNivel(Comparable unaEtiqueta);
-	
-	/**
-	 * Retorna la cantidad de hojas del arbol cuya raiz es la del nodo actual.
-	 * @return Cantidad de hojas del subarbol.
-	 */
-	public int obtenerCantidadHojas();
+    /**
+    * Retorna la altura del arbol cuya raiz es la del nodo actual.
+    * @return Altura del subarbol.
+    */
+    public int obtenerAltura();
 
-public TElementoAB eliminar(Comparable unaEtiqueta);
+    /**
+     * Retorna el tamaño del arbol cuya raiz es la del nodo actual.
+     * @return tamaño del subarbol.
+     */
+    public int obtenerTamanio();
 
+    /**
+     * Retorna el nivel del elemento cuya etiqueta es la pasada por par�metro.
+     * @param unaEtiqueta
+     * @return Nivel
+     */
+    public int obtenerNivel(Comparable unaEtiqueta);
 
+    /**
+     * Retorna la cantidad de hojas del arbol cuya raiz es la del nodo actual.
+     * @return Cantidad de hojas del subarbol.
+     */
+    public int obtenerCantidadHojas();
+
+    public TElementoAB eliminar(Comparable unaEtiqueta);
 }
 
 
