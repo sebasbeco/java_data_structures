@@ -11,10 +11,10 @@ import static java.lang.Integer.max;
 
 public class TElementoAB<T> implements IElementoAB<T> {
     
-    protected Comparable etiqueta;
-    protected T datos;
-    protected IElementoAB<T> hijoIzq;
-    protected IElementoAB<T> hijoDer;
+    Comparable etiqueta;
+    T datos;
+    TElementoAB<T> hijoIzq;
+    TElementoAB<T> hijoDer;
 
     public TElementoAB(Comparable etiqueta, T datos) {
         this.etiqueta = etiqueta;
@@ -32,27 +32,17 @@ public class TElementoAB<T> implements IElementoAB<T> {
     }
 
     @Override
-    public IElementoAB<T> getHijoIzq() {
+    public TElementoAB<T> getHijoIzq() {
         return hijoIzq;
     }
 
     @Override
-    public IElementoAB<T> getHijoDer() {
+    public TElementoAB<T> getHijoDer() {
         return hijoDer;
     }
-    
-    @Override
-    public void setHijoIzq(IElementoAB<T> hijoIzq) {
-        this.hijoIzq = hijoIzq;
-    }
 
     @Override
-    public void setHijoDer(IElementoAB<T> hijoDer) {
-        this.hijoDer = hijoDer;
-    }
-
-    @Override
-    public IElementoAB<T> buscar(Comparable unaEtiqueta) {
+    public TElementoAB<T> buscar(Comparable unaEtiqueta) {
         int compareResult = unaEtiqueta.compareTo(etiqueta);
         
         if (compareResult < 0)
@@ -72,8 +62,8 @@ public class TElementoAB<T> implements IElementoAB<T> {
     
     // !! Cuidado que no soporta duplicados !!
     @Override
-    public boolean insertar(IElementoAB<T> elemento) {
-        int compareResult = elemento.getEtiqueta().compareTo(etiqueta);
+    public boolean insertar(TElementoAB<T> elemento) {
+        int compareResult = elemento.etiqueta.compareTo(etiqueta);
         
         if (compareResult < 0) 
         {
@@ -204,7 +194,7 @@ public class TElementoAB<T> implements IElementoAB<T> {
     }
 
     @Override
-    public IElementoAB eliminar(Comparable unaEtiqueta) {
+    public TElementoAB eliminar(Comparable unaEtiqueta) {
         int compareResult = unaEtiqueta.compareTo(etiqueta);
         
         if (compareResult < 0) {
@@ -220,27 +210,25 @@ public class TElementoAB<T> implements IElementoAB<T> {
     }
     
     
-    private IElementoAB<T> eliminar() {
+    private TElementoAB eliminar() {
         // at most one child
         if (hijoIzq == null || hijoDer == null)
             return (hijoIzq != null) ? hijoIzq : hijoDer;
         
         // complete node
-        IElementoAB<T> parent = this;
-        IElementoAB<T> predecessor = this.hijoIzq;
-        while (predecessor.getHijoDer() != null) {
+        TElementoAB<T> parent = this;
+        TElementoAB<T> predecessor = this.hijoIzq;
+        while (predecessor.hijoDer != null) {
             parent = predecessor;
-            predecessor = predecessor.getHijoDer();
+            predecessor = predecessor.hijoDer;
         }
         
         if (parent != this) {
-            parent.setHijoDer(predecessor.getHijoIzq());
-            predecessor.setHijoIzq(hijoDer);
+            parent.hijoDer = predecessor.hijoIzq;
+            predecessor.hijoIzq = hijoIzq;
         }
         
-        predecessor.setHijoDer(hijoDer);
+        predecessor.hijoDer = hijoDer;
         return predecessor;
     }
-
-
 }

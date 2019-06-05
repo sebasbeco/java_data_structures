@@ -21,19 +21,15 @@ public interface IElementoAB<T> {
      *
      * @return Hijo Izquierdo del nodo.
      */
-    public IElementoAB<T> getHijoIzq();
+    public TElementoAB<T> getHijoIzq();
 
     /**
      * Obtiene el hijo derecho del nodo.
      *
      * @return Hijo derecho del nodo.
      */
-    public IElementoAB<T> getHijoDer();
+    public TElementoAB<T> getHijoDer();
 
-    
-    public void setHijoIzq(IElementoAB<T> node);
-    
-    public void setHijoDer(IElementoAB<T> node);
 
     /**
      * Busca un elemento dentro del arbol con la etiqueta indicada.
@@ -41,7 +37,9 @@ public interface IElementoAB<T> {
      * @param unaEtiqueta del nodo a buscar
      * @return Elemento encontrado. En caso de no encontrarlo, retorna nulo.
      */
-    public IElementoAB<T> buscar(Comparable unaEtiqueta);
+    public TElementoAB<T> buscar(Comparable unaEtiqueta);
+
+ 
 
     /**
      * Inserta un elemento dentro del arbol.
@@ -49,7 +47,8 @@ public interface IElementoAB<T> {
      * @param elemento Elemento a insertar.
      * @return Exito de la operaci�n.
      */
-    public boolean insertar(IElementoAB<T> elemento);
+    public boolean insertar(TElementoAB<T> elemento);
+
   
     /**
      * Imprime en inorden el arbol separado por guiones.
@@ -70,6 +69,7 @@ public interface IElementoAB<T> {
      *
      * @return
      */
+    public T getDatos();
 	
     /**
     * Retorna la altura del arbol cuya raiz es la del nodo actual.
@@ -96,12 +96,7 @@ public interface IElementoAB<T> {
      */
     public int obtenerCantidadHojas();
 
-    public IElementoAB eliminar(Comparable unaEtiqueta);
-    
-    public void preOrden(Lista<T> unaLista);
-    
-    public void postOrden(Lista<T> unaLista);
-    
+    public TElementoAB eliminar(Comparable unaEtiqueta);
 }
 
 
